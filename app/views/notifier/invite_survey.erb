@@ -1,0 +1,16 @@
+<% if @new_body %>
+  <%= @new_body %>
+<% else %>
+  Dear <%= @name %>
+  
+  We are in the process of updating our surveys.  We would be most grateful 
+  if you would take some time to review and update the information in the survey.
+  
+  To update the survey, please click the following link.  Alternatively,
+  you may copy and paste the link into your browser's URL bar.
+  
+  <%= link_to "http://#{@host}/surveys", "http://#{@host}/surveys" %>
+  
+  Thank you,
+  Council on State Governments
+<% end %>
