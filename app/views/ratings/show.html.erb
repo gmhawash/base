@@ -1,0 +1,28 @@
+<p>
+  <b>Project:</b>
+  <%=h @rating.project_id %>
+</p>
+
+<p>
+  <b>Contractor:</b>
+  <%=h @rating.contractor_id %>
+</p>
+
+<p>
+  <b>Service:</b>
+  <%=h @rating.service_id %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%=h @rating.start_date %>
+</p>
+
+<p>
+  <b>Response:</b>
+  <%=h @rating.response %>
+</p>
+
+
+<%= link_to 'Edit', edit_rating_path(@rating) %> |
+<%= link_to 'Back', ratings_path %>

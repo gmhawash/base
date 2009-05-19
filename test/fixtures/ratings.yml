@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  project_id: 1
+  contractor_id: 1
+  service_id: MyString
+  start_date: 2009-05-17
+  response: MyString
+
+two:
+  project_id: 1
+  contractor_id: 1
+  service_id: MyString
+  start_date: 2009-05-17
+  response: MyString

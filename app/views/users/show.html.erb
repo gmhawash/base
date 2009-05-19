@@ -1,0 +1,48 @@
+<p>
+  <b>Username:</b>
+  <%=h @user.username %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @user.email %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%=h @user.password %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%=h @user.role %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%=h @user.active %>
+</p>
+
+<p>
+  <b>Activation code:</b>
+  <%=h @user.activation_code %>
+</p>
+
+<p>
+  <b>Activation code generated:</b>
+  <%=h @user.activation_code_generated %>
+</p>
+
+<p>
+  <b>Last login:</b>
+  <%=h @user.last_login %>
+</p>
+
+<p>
+  <b>Password salt:</b>
+  <%=h @user.password_salt %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
