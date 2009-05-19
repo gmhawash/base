@@ -1,7 +1,7 @@
 class AccountController < ApplicationController
   def logout
     reset_session
-    if request.referer =~ /\/admin/
+    if !request.referer || request.referer =~ /\/admin/
       redirect_to '/'
     else
       redirect_to request.referer
@@ -27,7 +27,7 @@ class AccountController < ApplicationController
         session[:return_to] = nil
       else
         u = User.find_by_email(params[:login][:email])
-        if  u && !u.activated?
+        if  u && !u.active?
           flash[:notice] = "Your account has not yet been activated.  Please check your email for instructions."
           redirect_to '/'
         else 
@@ -40,7 +40,7 @@ class AccountController < ApplicationController
 
   def new
     if request.post?
-      @user = User.new(params[:user].merge(:activated => false))
+      @user = User.new(params[:user].merge(:active => false))
       @user.generate_activation_code
       if @user.valid?
         @user.save
@@ -58,9 +58,9 @@ class AccountController < ApplicationController
   
   def activate
     if(params[:code] && params[:code].length >= 1 &&
-      @user = User.find_by_activated_and_activation_code(false, params[:code], 
+      @user = User.find_by_active_and_activation_code(false, params[:code], 
         :conditions => ['activation_code_generated >= ?', Date.today - 1.week]))
-      @user.update_attributes!(:activated => true)
+      @user.update_attributes!(:active => true)
       render :template => '/account/activated'
     else
       redirect_to '/'
@@ -69,14 +69,14 @@ class AccountController < ApplicationController
   
   def reset_password
     if(request.get? && params[:code] && params[:code].length >= 1 &&
-      @user = User.find_by_activated_and_activation_code(true, params[:code], 
+      @user = User.find_by_active_and_activation_code(true, params[:code], 
         :conditions => ['activation_code_generated >= ?', Date.today - 1.week]))
 
       render :template => '/account/new_password'
     
     elsif(request.post? && params[:user])
       
-      if @user = User.find_by_activated_and_email(true, params[:user][:email].downcase)
+      if @user = User.find_by_active_and_email(true, params[:user][:email].downcase)
         @user.generate_activation_code
         @user.save
 
@@ -87,7 +87,7 @@ class AccountController < ApplicationController
       end
     
     elsif(request.post? && params[:password] && params[:code].length >= 1 &&
-      @user = User.find_by_activated_and_activation_code(true, params[:code], 
+      @user = User.find_by_active_and_activation_code(true, params[:code], 
         :conditions => ['activation_code_generated >= ?', Date.today - 1.week]))
     
       @user.update_attributes(

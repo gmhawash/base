@@ -1,0 +1,15 @@
+<h1>Please create an account!</h1>
+
+<p>As a security measure, after you create an account, we will send an email to
+the address you provide containing instructions on how to activate your account.
+After you activate your account, you will be able to log in with your email
+address and password.</p>
+
+<% form_for :user do |f|                                         %>
+<%= f.text_field     :name                                       %>
+<%= f.text_field     :email                                      %>
+<%= f.password_field :password,              'Password:',         :value => '' %>
+<%= f.password_field :password_confirmation, 'Confirm password:', :value => '' %>
+<%= f.submit 'Request account'                                   %>
+<% end                                                           %>
+

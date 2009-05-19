@@ -1,0 +1,9 @@
+<h1>Please log in using your XYZ account!</h1>
+
+<% form_for :login do |f|          %>
+<%= f.text_field     :email        %>
+<%= f.password_field :password     %>
+<%= f.submit 'Log in'              %>
+<% end                             %>
+
+<p style="text-align: center;">You may also <%= link_to "create an account", :action => :new %>  or if you do not have your password, you can <%= link_to "reset it", :action => :reset_password %>.

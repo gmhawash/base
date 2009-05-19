@@ -1,0 +1,7 @@
+log/*
+nbproject/*
+public/documents/*
+test/documents/*
+tmp/*
+db/*.sqlite*
+db/development_structure.sql

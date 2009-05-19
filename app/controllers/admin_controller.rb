@@ -26,7 +26,7 @@ class AdminController < ApplicationController
   def check_logged_in_as_admin
     if (params[:action] =~ /admin/) 
       if !@user || !@user.admin?
-        flash[:notice] = "Please log in"
+        flash[:notice] = "You must be an admin to login to this site..."
         session[:return_to] = request.request_uri
         redirect_to '/login'
         return false

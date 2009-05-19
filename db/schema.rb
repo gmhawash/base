@@ -9,14 +9,46 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090517154357) do
+ActiveRecord::Schema.define(:version => 20090518043150) do
+
+  create_table "messages", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "sender_id"
+    t.integer  "recepient_id"
+    t.date     "read_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "presentations", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "contractor_id"
+    t.string   "service_id"
+    t.date     "start_date"
+    t.string   "response"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "services", :force => true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
-    t.string   "username"
-    t.string   "email"
-    t.string   "password"
+    t.string   "name"
+    t.string   "email",                                        :null => false
+    t.string   "password",                                     :null => false
     t.string   "role"
-    t.boolean  "active"
+    t.boolean  "active",                    :default => false
     t.string   "activation_code"
     t.date     "activation_code_generated"
     t.datetime "last_login"
@@ -24,5 +56,7 @@ ActiveRecord::Schema.define(:version => 20090517154357) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end

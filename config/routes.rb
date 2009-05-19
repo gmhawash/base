@@ -17,6 +17,12 @@ ActionController::Routing::Routes.draw do |map|
   end
     
   
+  map.connect 'login', :controller => 'account', :action => 'login'
+  map.connect 'logout', :controller => 'account', :action => 'logout'
+
+  map.connect 'account/:action',       :controller => 'account'
+  map.connect 'account/:action/:code', :controller => 'account'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
